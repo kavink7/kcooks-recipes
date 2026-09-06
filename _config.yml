@@ -7,19 +7,19 @@
 
 title:    Salt & Char
 tagline:  A cooking notebook
-author:   Your Name
+author:   Kavin Kabilan
 
 description: >-
   Recipes and photographs from my kitchen.
 
 # Your Instagram handle, without the @. Leave blank to hide the link.
-instagram: yourhandle
+instagram: kavink.cooks
 
 # ---- Addresses -------------------------------------------------
 # If your repo is named  username.github.io   -> baseurl: ""
 # If your repo is named  recipes  (anything else) -> baseurl: "/recipes"
-url:     "https://username.github.io"
-baseurl: ""
+url:     "https://kavinkcooks.github.io"
+baseurl: "/kcooks-recipes"
 
 # ---- Machinery. You shouldn't need to touch anything below. ----
 
