@@ -1,0 +1,51 @@
+# ============================================================
+#  Everything personal to you lives in this file.
+#  Edit it, commit, and the whole site updates.
+#  (Changes to THIS file only appear after a fresh push —
+#   if you run the site locally, restart the server.)
+# ============================================================
+
+title:    Salt & Char
+tagline:  A cooking notebook
+author:   Your Name
+
+description: >-
+  Recipes and photographs from my kitchen.
+
+# Your Instagram handle, without the @. Leave blank to hide the link.
+instagram: yourhandle
+
+# ---- Addresses -------------------------------------------------
+# If your repo is named  username.github.io   -> baseurl: ""
+# If your repo is named  recipes  (anything else) -> baseurl: "/recipes"
+url:     "https://username.github.io"
+baseurl: ""
+
+# ---- Machinery. You shouldn't need to touch anything below. ----
+
+collections:
+  recipes:
+    output: true
+    permalink: /recipes/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: recipes
+    values:
+      layout: recipe
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md

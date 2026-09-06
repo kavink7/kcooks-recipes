@@ -1,0 +1,30 @@
+---
+layout: default
+---
+{%- assign plates = site.recipes | sort: 'date' | reverse -%}
+{%- assign lead = plates | first -%}
+
+<p class="lede wrap">{{ site.description }}</p>
+
+{%- if lead %}
+<div class="wrap">
+  <a class="hero" href="{{ lead.url | relative_url }}">
+    <div class="hero__frame">
+      {%- if lead.image %}<img src="{{ lead.image | relative_url }}" alt="{{ lead.title }}">{% endif %}
+    </div>
+    <div class="hero__foot">
+      <h1 class="hero__title">{{ lead.title }}</h1>
+      <dl class="spec">
+        {%- if lead.serves %}<div><dt>serves</dt><dd>{{ lead.serves }}</dd></div>{% endif %}
+        {%- if lead.time %}<div><dt>time</dt><dd>{{ lead.time }}</dd></div>{% endif %}
+      </dl>
+    </div>
+  </a>
+</div>
+{%- endif %}
+
+<div class="gallery wrap">
+  {%- for recipe in plates offset: 1 limit: 8 %}
+    {% include plate.html recipe=recipe %}
+  {%- endfor %}
+</div>

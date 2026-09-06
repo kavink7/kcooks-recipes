@@ -1,0 +1,69 @@
+---
+layout: default
+---
+<article class="recipe">
+
+  <header class="recipe__head wrap">
+    <h1 class="recipe__title">{{ page.title }}</h1>
+    {%- if page.intro %}<p class="recipe__intro">{{ page.intro }}</p>{% endif %}
+  </header>
+
+  {%- if page.image %}
+  <div class="wrap">
+    <figure class="recipe__figure">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    </figure>
+  </div>
+  {%- endif %}
+
+  <div class="recipe__body wrap">
+
+    <div class="ingredients">
+      <h2>Ingredients</h2>
+      {%- comment -%}
+        Two shapes are supported in front matter:
+        a flat list of strings, or groups of { group:, items: [] }.
+      {%- endcomment -%}
+      {%- assign flat = '' -%}
+      {%- for entry in page.ingredients -%}
+        {%- if entry.group -%}
+          {%- if flat != '' -%}</ul>{%- assign flat = '' -%}{%- endif -%}
+          <p class="ingredients__group">{{ entry.group }}</p>
+          <ul>{% for item in entry.items %}<li>{{ item }}</li>{% endfor %}</ul>
+        {%- else -%}
+          {%- if flat == '' -%}<ul>{%- assign flat = 'open' -%}{%- endif -%}
+          <li>{{ entry }}</li>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if flat != '' -%}</ul>{%- endif -%}
+
+      <dl class="spec spec--stack">
+        {%- if page.serves %}<div><dt>serves</dt><dd>{{ page.serves }}</dd></div>{% endif %}
+        {%- if page.time %}<div><dt>time</dt><dd>{{ page.time }}</dd></div>{% endif %}
+        {%- if page.date %}<div><dt>cooked</dt><dd>{{ page.date | date: "%-d %B %Y" }}</dd></div>{% endif %}
+      </dl>
+    </div>
+
+    <div class="method">
+      <h2>Method</h2>
+      {{ content }}
+    </div>
+
+  </div>
+
+  {%- if page.notes %}
+  <section class="notes wrap">
+    <h2>Notes</h2>
+    {{ page.notes | markdownify }}
+  </section>
+  {%- endif %}
+
+  {%- if page.gallery %}
+  <section class="stills wrap">
+    {%- for shot in page.gallery %}
+    <img src="{{ shot | relative_url }}" alt="{{ page.title }}" loading="lazy">
+    {%- endfor %}
+  </section>
+  {%- endif %}
+
+</article>

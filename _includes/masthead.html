@@ -1,0 +1,10 @@
+<header class="masthead wrap">
+  <a class="masthead__name" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <nav class="masthead__nav">
+    <a href="{{ '/recipes/' | relative_url }}"{% if page.url contains '/recipes' %} aria-current="page"{% endif %}>Recipes</a>
+    <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+    {%- if site.instagram and site.instagram != '' %}
+    <a href="https://instagram.com/{{ site.instagram }}" rel="me noopener">Instagram</a>
+    {%- endif %}
+  </nav>
+</header>
