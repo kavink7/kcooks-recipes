@@ -1,0 +1,12 @@
+{%- comment -%}
+  The photograph for a recipe, sitting on top of a designed stand-in.
+  If there is no photo yet — or the file is missing — the stand-in shows
+  through instead of an empty grey box.
+  Pass: include.recipe, optionally include.loading ("eager" above the fold).
+{%- endcomment -%}
+{%- assign r = include.recipe -%}
+{%- assign seed = r.title | size | modulo: 5 -%}
+<span class="ph ph--{{ seed }}" aria-hidden="true"><span class="ph__mark">{{ r.title | slice: 0 }}</span></span>
+{%- if r.image -%}
+<img class="frame__img" src="{{ r.image | relative_url }}" alt="{{ r.title }}" loading="{{ include.loading | default: 'lazy' }}" decoding="async" onerror="this.remove()">
+{%- endif -%}

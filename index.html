@@ -4,27 +4,56 @@ layout: default
 {%- assign plates = site.recipes | sort: 'date' | reverse -%}
 {%- assign lead = plates | first -%}
 
-<p class="lede wrap">{{ site.description }}</p>
+<section class="opener">
+  <div class="wrap opener__inner">
+    <p class="eyebrow">{{ site.tagline }}</p>
+    <h1 class="opener__title">Food worth <em>writing&nbsp;down.</em></h1>
+    <p class="opener__lede">{{ site.description }} Nothing fancy — a normal stove, an ordinary shop, and quantities you should treat as a starting point.</p>
+    <div class="opener__actions">
+      <a class="btn btn--solid" href="{{ '/recipes/' | relative_url }}">Browse {{ plates.size }} recipe{% if plates.size != 1 %}s{% endif %}</a>
+      <a class="btn" href="{{ '/about/' | relative_url }}">About the kitchen</a>
+    </div>
+  </div>
+</section>
 
 {%- if lead %}
-<div class="wrap">
-  <a class="hero" href="{{ lead.url | relative_url }}">
-    <div class="hero__frame">
-      {%- if lead.image %}<img src="{{ lead.image | relative_url }}" alt="{{ lead.title }}">{% endif %}
-    </div>
-    <div class="hero__foot">
-      <h1 class="hero__title">{{ lead.title }}</h1>
-      <dl class="spec">
-        {%- if lead.serves %}<div><dt>serves</dt><dd>{{ lead.serves }}</dd></div>{% endif %}
-        {%- if lead.time %}<div><dt>time</dt><dd>{{ lead.time }}</dd></div>{% endif %}
-      </dl>
-    </div>
-  </a>
-</div>
+<section class="featured">
+  <div class="wrap">
+    <a class="hero" href="{{ lead.url | relative_url }}">
+      <div class="hero__frame frame">
+        {% include frame.html recipe=lead loading="eager" %}
+        <span class="frame__badge frame__badge--lead">Latest</span>
+      </div>
+      <div class="hero__foot">
+        <div>
+          <h2 class="hero__title">{{ lead.title }}</h2>
+          {%- if lead.intro %}<p class="hero__intro">{{ lead.intro }}</p>{% endif %}
+        </div>
+        <div class="hero__side">
+          <dl class="chips">
+            {%- if lead.serves %}<div class="chip"><dt>Serves</dt><dd>{{ lead.serves }}</dd></div>{% endif %}
+            {%- if lead.time %}<div class="chip"><dt>Time</dt><dd>{{ lead.time }}</dd></div>{% endif %}
+          </dl>
+          <span class="btn btn--solid btn--sm">Read the recipe</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
 {%- endif %}
 
-<div class="gallery wrap">
-  {%- for recipe in plates offset: 1 limit: 8 %}
-    {% include plate.html recipe=recipe %}
-  {%- endfor %}
-</div>
+{%- if plates.size > 1 %}
+<section class="wall">
+  <div class="wrap">
+    <div class="sectionhead">
+      <h2 class="sectionhead__title">Recently cooked</h2>
+      <a class="morelink" href="{{ '/recipes/' | relative_url }}">See everything &rarr;</a>
+    </div>
+    <div class="gallery">
+      {%- for recipe in plates offset: 1 limit: 8 %}
+        {% include plate.html recipe=recipe %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}

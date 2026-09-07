@@ -1,15 +1,15 @@
 {%- comment -%} One recipe as a gallery tile. Pass: include.recipe {%- endcomment -%}
-<a class="plate" href="{{ include.recipe.url | relative_url }}">
-  <div class="plate__frame">
-    {%- if include.recipe.image %}
-    <img src="{{ include.recipe.image | relative_url }}" alt="{{ include.recipe.title }}" loading="lazy">
-    {%- endif %}
+<a class="plate reveal" href="{{ include.recipe.url | relative_url }}">
+  <div class="plate__frame frame">
+    {% include frame.html recipe=include.recipe %}
+    {%- if include.recipe.time %}<span class="frame__badge">{{ include.recipe.time }}</span>{% endif %}
   </div>
   <div class="plate__foot">
     <h2 class="plate__title">{{ include.recipe.title }}</h2>
-    <dl class="spec">
-      {%- if include.recipe.serves %}<div><dt>serves</dt><dd>{{ include.recipe.serves }}</dd></div>{% endif %}
-      {%- if include.recipe.time %}<div><dt>time</dt><dd>{{ include.recipe.time }}</dd></div>{% endif %}
-    </dl>
+    {%- if include.recipe.intro %}<p class="plate__intro">{{ include.recipe.intro | truncate: 92 }}</p>{% endif %}
+    <div class="taglist">
+      {%- if include.recipe.serves %}<span class="tag tag--quiet">serves {{ include.recipe.serves }}</span>{% endif %}
+      {%- for tag in include.recipe.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+    </div>
   </div>
 </a>

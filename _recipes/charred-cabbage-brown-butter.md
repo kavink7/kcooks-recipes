@@ -3,7 +3,8 @@ title: Charred cabbage, brown butter, hazelnut
 date: 2026-08-28
 serves: 2
 time: 40 min
-image: /assets/images/recipes/charred-cabbage.jpg
+# No photo yet. Drop the file in assets/images/recipes/ and uncomment:
+# image: /assets/images/recipes/charred-cabbage.jpg
 tags: [vegetables, weeknight]
 intro: The cut side goes almost black. That is the point of the dish.
 ingredients:

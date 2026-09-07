@@ -5,7 +5,7 @@
 #   if you run the site locally, restart the server.)
 # ============================================================
 
-title:    Salt & Char
+title:    Kavin's Kitchen
 tagline:  A cooking notebook
 author:   Kavin Kabilan
 
@@ -18,7 +18,7 @@ instagram: kavink.cooks
 # ---- Addresses -------------------------------------------------
 # If your repo is named  username.github.io   -> baseurl: ""
 # If your repo is named  recipes  (anything else) -> baseurl: "/recipes"
-url:     "https://kavinkcooks.github.io"
+url:     "https://kavink7.github.io"
 baseurl: "/kcooks-recipes"
 
 # ---- Machinery. You shouldn't need to touch anything below. ----
@@ -49,3 +49,5 @@ exclude:
   - Gemfile.lock
   - vendor
   - README.md
+  - _preview
+  - _templates

@@ -3,7 +3,7 @@ title: Thai green curry
 date: 2026-09-06
 serves: 4
 time: 40 min
-# image: /assets/images/recipes/thai-green-curry.jpg
+image: /assets/images/recipes/thai-green-curry.jpg
 tags: [chicken, weeknight]
 intro: Crack the coconut milk properly and the rest of the dish takes care of itself.
 ingredients:

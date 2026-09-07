@@ -1,6 +1,8 @@
 ---
 layout: page
 title: About
+permalink: /about/
+intro: A home kitchen, an ordinary stove, and the dishes that turned out well enough to write down.
 ---
 
 I cook most nights and photograph the dishes that turn out well. I decided to make a website for the recipes to these dishes, especially the ones I've made enough times to know well.

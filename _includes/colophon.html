@@ -1,8 +1,16 @@
-<footer class="colophon wrap">
-  <span>{{ site.tagline }} by {{ site.author }}</span>
-  <span>
-    {%- if site.instagram and site.instagram != '' -%}
-    <a href="https://instagram.com/{{ site.instagram }}" rel="me noopener">@{{ site.instagram }}</a>
-    {%- endif -%}
-  </span>
+<footer class="colophon">
+  <div class="colophon__inner wrap">
+    <div class="colophon__brand">
+      <span class="colophon__name">{{ site.title }}</span>
+      <span class="colophon__tag">{{ site.tagline }} by {{ site.author }}</span>
+    </div>
+    <nav class="colophon__nav" aria-label="Footer">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <a href="{{ '/recipes/' | relative_url }}">Recipes</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+      {%- if site.instagram and site.instagram != '' %}
+      <a href="https://instagram.com/{{ site.instagram }}" rel="me noopener">@{{ site.instagram }}</a>
+      {%- endif %}
+    </nav>
+  </div>
 </footer>

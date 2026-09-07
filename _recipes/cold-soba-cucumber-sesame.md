@@ -3,7 +3,8 @@ title: Cold soba, cucumber, sesame
 date: 2026-08-12
 serves: 2
 time: 20 min
-image: /assets/images/recipes/cold-soba.jpg
+# No photo yet. Drop the file in assets/images/recipes/ and uncomment:
+# image: /assets/images/recipes/cold-soba.jpg
 tags: [noodles, quick]
 intro: For the days it is too hot to stand near the stove for long.
 ingredients:

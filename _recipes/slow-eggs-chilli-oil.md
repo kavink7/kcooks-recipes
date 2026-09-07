@@ -3,7 +3,8 @@ title: Slow eggs, chilli oil, sourdough
 date: 2026-07-30
 serves: 1
 time: 15 min
-image: /assets/images/recipes/slow-eggs.jpg
+# No photo yet. Drop the file in assets/images/recipes/ and uncomment:
+# image: /assets/images/recipes/slow-eggs.jpg
 tags: [breakfast, quick]
 intro: Low heat, no colour, and more patience than the result suggests.
 ingredients:

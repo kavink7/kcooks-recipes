@@ -3,66 +3,95 @@ layout: default
 ---
 <article class="recipe">
 
-  <header class="recipe__head wrap">
-    <h1 class="recipe__title">{{ page.title }}</h1>
-    {%- if page.intro %}<p class="recipe__intro">{{ page.intro }}</p>{% endif %}
+  <header class="recipe__head">
+    <div class="wrap">
+      <a class="backlink" href="{{ '/recipes/' | relative_url }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        All recipes
+      </a>
+
+      {%- if page.tags and page.tags.size > 0 %}
+      <div class="taglist taglist--lead">
+        {%- for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      </div>
+      {%- endif %}
+
+      <h1 class="recipe__title">{{ page.title }}</h1>
+      {%- if page.intro %}<p class="recipe__intro">{{ page.intro }}</p>{% endif %}
+
+      <dl class="chips">
+        {%- if page.serves %}<div class="chip"><dt>Serves</dt><dd>{{ page.serves }}</dd></div>{% endif %}
+        {%- if page.time %}<div class="chip"><dt>Time</dt><dd>{{ page.time }}</dd></div>{% endif %}
+        {%- if page.date %}<div class="chip"><dt>Cooked</dt><dd>{{ page.date | date: "%-d %b %Y" }}</dd></div>{% endif %}
+      </dl>
+    </div>
   </header>
 
-  {%- if page.image %}
   <div class="wrap">
-    <figure class="recipe__figure">
-      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    <figure class="recipe__figure frame">
+      {% include frame.html recipe=page loading="eager" %}
     </figure>
   </div>
-  {%- endif %}
 
   <div class="recipe__body wrap">
 
-    <div class="ingredients">
-      <h2>Ingredients</h2>
-      {%- comment -%}
-        Two shapes are supported in front matter:
-        a flat list of strings, or groups of { group:, items: [] }.
-      {%- endcomment -%}
-      {%- assign flat = '' -%}
-      {%- for entry in page.ingredients -%}
-        {%- if entry.group -%}
-          {%- if flat != '' -%}</ul>{%- assign flat = '' -%}{%- endif -%}
-          <p class="ingredients__group">{{ entry.group }}</p>
-          <ul>{% for item in entry.items %}<li>{{ item }}</li>{% endfor %}</ul>
-        {%- else -%}
-          {%- if flat == '' -%}<ul>{%- assign flat = 'open' -%}{%- endif -%}
-          <li>{{ entry }}</li>
-        {%- endif -%}
-      {%- endfor -%}
-      {%- if flat != '' -%}</ul>{%- endif -%}
-
-      <dl class="spec spec--stack">
-        {%- if page.serves %}<div><dt>serves</dt><dd>{{ page.serves }}</dd></div>{% endif %}
-        {%- if page.time %}<div><dt>time</dt><dd>{{ page.time }}</dd></div>{% endif %}
-        {%- if page.date %}<div><dt>cooked</dt><dd>{{ page.date | date: "%-d %B %Y" }}</dd></div>{% endif %}
-      </dl>
-    </div>
+    <aside class="ingredients">
+      <div class="card">
+        <h2 class="eyebrow">Ingredients</h2>
+        <p class="ingredients__hint">Tap an item to cross it off.</p>
+        {%- comment -%}
+          Two shapes are supported in front matter:
+          a flat list of strings, or groups of { group:, items: [] }.
+        {%- endcomment -%}
+        {%- assign flat = '' -%}
+        {%- for entry in page.ingredients -%}
+          {%- if entry.group -%}
+            {%- if flat != '' -%}</ul>{%- assign flat = '' -%}{%- endif -%}
+            <p class="ingredients__group">{{ entry.group }}</p>
+            <ul class="checklist">{% for item in entry.items %}<li><button type="button">{{ item }}</button></li>{% endfor %}</ul>
+          {%- else -%}
+            {%- if flat == '' -%}<ul class="checklist">{%- assign flat = 'open' -%}{%- endif -%}
+            <li><button type="button">{{ entry }}</button></li>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if flat != '' -%}</ul>{%- endif -%}
+      </div>
+    </aside>
 
     <div class="method">
-      <h2>Method</h2>
+      <h2 class="eyebrow">Method</h2>
       {{ content }}
+
+      {%- if page.notes %}
+      <section class="notes">
+        <h2 class="eyebrow">Notes</h2>
+        {{ page.notes | markdownify }}
+      </section>
+      {%- endif %}
     </div>
 
   </div>
-
-  {%- if page.notes %}
-  <section class="notes wrap">
-    <h2>Notes</h2>
-    {{ page.notes | markdownify }}
-  </section>
-  {%- endif %}
 
   {%- if page.gallery %}
   <section class="stills wrap">
     {%- for shot in page.gallery %}
     <img src="{{ shot | relative_url }}" alt="{{ page.title }}" loading="lazy">
     {%- endfor %}
+  </section>
+  {%- endif %}
+
+  {%- assign current = page.url -%}
+  {%- assign more = site.recipes | where_exp: "r", "r.url != current" | sort: 'date' | reverse -%}
+  {%- if more.size > 0 %}
+  <section class="more">
+    <div class="wrap">
+      <h2 class="eyebrow">Cook something else</h2>
+      <div class="gallery gallery--three">
+        {%- for recipe in more limit: 3 %}
+          {% include plate.html recipe=recipe %}
+        {%- endfor %}
+      </div>
+    </div>
   </section>
   {%- endif %}
 
