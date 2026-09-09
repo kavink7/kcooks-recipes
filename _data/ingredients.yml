@@ -1,0 +1,12 @@
+# ============================================================
+#  Ingredients for the "Ingredient of the Day" page.
+#  Not live yet — see ingredient-of-the-day.html for how to
+#  turn the feature on once this list is filled in.
+#
+#  One entry per ingredient, "note" is optional:
+#
+# - name: Saffron
+#   note: A pinch goes further than you think.
+# - name: Fish sauce
+#   note: The secret backbone of half the recipes here.
+# ============================================================

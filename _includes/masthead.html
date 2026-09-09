@@ -3,8 +3,9 @@
     <a class="wordmark" href="{{ '/' | relative_url }}">
       <span class="wordmark__mark" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 3v7a2.5 2.5 0 0 0 5 0V3"/><path d="M8.5 10v11"/>
-          <path d="M17.5 3c-1.7 1.6-2.5 3.6-2.5 6s.8 3.5 2.5 3.5S20 11.4 20 9s-.8-4.4-2.5-6Z"/><path d="M17.5 12.5V21"/>
+          <path d="M4 12.5c0 4.14 3.58 7.5 8 7.5s8-3.36 8-7.5"/>
+          <path d="M3 12.5h18"/>
+          <path d="M9.5 8c-.9-.9-.9-2.1 0-3M12 7.3c-.9-.9-.9-2.1 0-3M14.5 8c-.9-.9-.9-2.1 0-3"/>
         </svg>
       </span>
       <span class="wordmark__text">{{ site.title }}</span>
@@ -12,6 +13,7 @@
 
     <nav class="nav" aria-label="Primary">
       <a href="{{ '/recipes/' | relative_url }}"{% if page.url contains '/recipes' %} aria-current="page"{% endif %}>Recipes</a>
+      <a href="{{ '/ingredient-of-the-day/' | relative_url }}"{% if page.url == '/ingredient-of-the-day/' %} aria-current="page"{% endif %}>Ingredient</a>
       <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
       {%- if site.instagram and site.instagram != '' %}
       <a class="nav__out" href="https://instagram.com/{{ site.instagram }}" rel="me noopener">Instagram</a>

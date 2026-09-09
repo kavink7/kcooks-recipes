@@ -1,0 +1,52 @@
+---
+layout: page
+title: Ingredient of the Day
+permalink: /ingredient-of-the-day/
+intro: A single ingredient, highlighted daily — picked by hand, not by algorithm.
+---
+
+<div class="soon">
+  <span class="soon__mark" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 12.5c0 4.14 3.58 7.5 8 7.5s8-3.36 8-7.5"/>
+      <path d="M3 12.5h18"/>
+      <path d="M9.5 8c-.9-.9-.9-2.1 0-3M12 7.3c-.9-.9-.9-2.1 0-3M14.5 8c-.9-.9-.9-2.1 0-3"/>
+    </svg>
+  </span>
+  <p class="soon__text">Coming soon — a new ingredient, picked by hand, every day.</p>
+</div>
+
+<!--
+  Turning this on later:
+
+  1. Fill in _data/ingredients.yml with the ingredients you want in rotation.
+  2. Delete the ".soon" block above.
+  3. Uncomment everything below.
+
+  This picks today's ingredient in the visitor's browser (by day-of-year,
+  wrapping around the list), so it changes every day on its own — no
+  rebuild or scheduled deploy needed.
+
+  {%- assign pool = site.data.ingredients -%}
+  {%- if pool and pool.size > 0 %}
+  <script type="application/json" id="ingredient-pool">{{ pool | jsonify }}</script>
+  <div class="soon" id="ingredient-today">
+    <p class="eyebrow">Today's ingredient</p>
+    <h2 class="today__name"></h2>
+    <p class="soon__text today__note"></p>
+  </div>
+  <script>
+    (function () {
+      var pool = JSON.parse(document.getElementById('ingredient-pool').textContent);
+      if (!pool.length) return;
+      var today = new Date();
+      var start = Date.UTC(today.getUTCFullYear(), 0, 0);
+      var now = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+      var dayOfYear = Math.round((now - start) / 86400000);
+      var pick = pool[dayOfYear % pool.length];
+      document.querySelector('.today__name').textContent = pick.name;
+      document.querySelector('.today__note').textContent = pick.note || '';
+    })();
+  </script>
+  {%- endif -%}
+-->
