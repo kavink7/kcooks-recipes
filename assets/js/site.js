@@ -59,6 +59,20 @@
     setTimeout(revealAll, 4000);
   }
 
+  /* ---- Random recipe -------------------------------------------------- */
+
+  document.querySelectorAll('[data-random-recipe]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var index = document.getElementById('recipe-index');
+      if (!index) return;
+      var urls = JSON.parse(index.textContent);
+      if (!urls.length) return;
+      var choices = urls.length > 1 ? urls.filter(function (u) { return u !== location.pathname; }) : urls;
+      var pick = choices[Math.floor(Math.random() * choices.length)];
+      window.location.href = pick;
+    });
+  });
+
   /* ---- Cross ingredients off as you gather them ---------------------- */
 
   document.querySelectorAll('.checklist').forEach(function (list) {

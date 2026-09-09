@@ -334,32 +334,34 @@ a { color: inherit; text-decoration: none; }
 
 .wordmark {
   display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
   margin-right: auto;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  transition: font-size 260ms var(--ease);
 }
-.wordmark__mark {
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  flex: none;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--paper);
-  transition: transform 300ms var(--ease);
-}
-.wordmark__mark svg { width: 1.15rem; height: 1.15rem; }
-.wordmark:hover .wordmark__mark { transform: rotate(-8deg) scale(1.05); }
 
 .wordmark__text {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1em;
+  line-height: 1;
   letter-spacing: -0.01em;
-  font-variation-settings: "SOFT" 60, "WONK" 1;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 80, "WONK" 1;
 }
+
+.wordmark__flourish {
+  width: 3.8em;
+  height: 0.34em;
+  color: var(--accent);
+  transition: transform 320ms var(--ease);
+}
+.wordmark:hover .wordmark__flourish { transform: translateY(1px) scaleX(1.06); }
+
+.masthead.is-stuck .wordmark { font-size: clamp(1.4rem, 2vw, 1.7rem); }
 
 .nav {
   display: flex;
@@ -380,6 +382,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--accent-soft);
 }
 
+.shuffle,
 .themetoggle {
   display: grid;
   place-items: center;
@@ -394,6 +397,10 @@ a { color: inherit; text-decoration: none; }
   cursor: pointer;
   transition: color 180ms var(--ease), border-color 180ms var(--ease), transform 300ms var(--ease);
 }
+.shuffle svg { width: 1.05rem; height: 1.05rem; }
+.shuffle:hover { color: var(--accent-ink); border-color: var(--accent); transform: rotate(-14deg) scale(1.08); }
+.shuffle:active { transform: rotate(8deg) scale(0.92); }
+
 .themetoggle:hover { color: var(--ink); border-color: var(--rule-strong); transform: rotate(18deg); }
 .themetoggle svg { width: 1.05rem; height: 1.05rem; grid-area: 1 / 1; }
 .themetoggle__moon { display: none; }
@@ -408,7 +415,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 34rem) {
   .nav__out { display: none; }
   .nav a { padding-inline: 0.6rem; }
-  .wordmark__text { font-size: 1.15rem; }
+  .wordmark { font-size: 1.5rem; }
 }
 
 /* ------------------------------------------------------------------
