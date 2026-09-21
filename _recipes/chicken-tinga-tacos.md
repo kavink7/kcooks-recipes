@@ -1,5 +1,5 @@
 ---
-title: A beautiful blend of freshness and spice
+title: Chicken Tinga Tacos
 date: 2026-09-17
 serves: 4
 time: 90 min
