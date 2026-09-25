@@ -1,6 +1,6 @@
 ---
 title: Hoisin Garlic Noodles
-date: 2026-09-23
+date: 2026-09-24
 serves: 4
 time: 25 min
 image: /assets/images/recipes/hoisin-garlic-noodles.jpeg
