@@ -84,4 +84,23 @@
     });
     list.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
   });
+
+  /* ---- Visit counter (counts once per browser session) --------------- */
+
+  var counter = document.querySelector('[data-visit-counter]');
+  if (counter && window.fetch) {
+    var base = 'https://abacus.jasoncameron.dev/';
+    var key = 'kavink7-kcooks-recipes/visits';
+    var counted = false;
+    try { counted = sessionStorage.getItem('visit-counted') === '1'; } catch (e) {}
+    fetch(base + (counted ? 'get/' : 'hit/') + key)
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
+      .then(function (data) {
+        if (typeof data.value !== 'number') return;
+        try { sessionStorage.setItem('visit-counted', '1'); } catch (e) {}
+        counter.querySelector('[data-visit-count]').textContent = data.value.toLocaleString();
+        counter.hidden = false;
+      })
+      .catch(function () {});
+  }
 })();
